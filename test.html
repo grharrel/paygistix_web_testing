@@ -10,7 +10,6 @@
   <body>
 <form action="https://safepay.paymentlogistics.net/transaction.asp" method="post">
 
-<input type="hidden" name="TxnType" value="SALE" />
 <input type="hidden" name="MerchantID" value="GeneWEB" />
 <input type="hidden" name="Amount" value="1.00" />
 <input type="hidden" name="Hash" value="e58df440d44b0b1acfddee2dddef77e7" />
@@ -18,6 +17,16 @@
 
 <table>
   <tbody>
+  <tr>
+    <td>Transaction Type</th>
+    <td><select name="TxnType">
+  <option value="SALE">SALE</option>
+  <option value="AUTH">AUTH</option></th>
+  </tr>
+  <tr>
+    <td>Order ID</th>
+    <td><input type="text" name="OrderID"></th>
+  </tr>
   <tr>
     <td>Card Name</th>
     <td><input type="text" name="CardName"></th>
