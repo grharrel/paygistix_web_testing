@@ -9,29 +9,8 @@
   </head>
   <body>
 <form action="https://safepay.paymentlogistics.net/transaction.asp" method="post">
-<style type="text/css">
-  .pxPrice {text-align:right;}
-  .pxQty {width:60px;text-align:right;}
-</style>
-<table id=pxForm name=pxForm>
-  <thead>
-    <th>Code</th><th>Item</th><th>Price</th><th>Qty</th>
-  </thead>
+<table>
   <tbody>
-    <tr>
-      <td class="pxCode">
-         test_prod<input type="hidden" name="pxCode1" value="test_prod" />
-      </td>
-      <td class="pxDescription">
-         Nothing to see here<input type="hidden" name="pxDescription1" value="Nothing to see here" />
-      </td>
-      <td class="pxPrice">
-          $10.00<input type="hidden" name="pxPrice1" id="pxPrice1" value="10.00" />
-      </td>
-      <td>
-          <input type="text" class="pxQty" name="pxQty1" id="pxQty1" value="0" onblur="javascript:formatQty(this);" maxlength="3"/>
-      </td>
-    </tr>
   <tr>
     <td>Card Name</th>
     <td><input type="text" name="CardName"></th>
@@ -49,20 +28,18 @@
     <td><input type="text" name="CVNum"></td>
   </tr>
   </tbody>
-  <tfoot>
-    <tr>
-      <td colspan=4 align=right>
-         <span id="pxTotal"><b>Total $0.00<b/> </span><input type="submit" id="pxSubmit" value="Pay Now" />
-      </td>
-    </tr>
-  </tfoot>
-</table>
 
 <input type="hidden" name="TxnType" value="SALE" />
 <input type="hidden" name="MerchantID" value="GeneWEB" />
 <input type="hidden" name="Hash" value="e58df440d44b0b1acfddee2dddef77e7" />
 <input type="hidden" name="ReturnURL" value="https://grharrel.github.io/paygistix_web_testing/test.html" />
-
+  <tfoot>
+    <tr>
+      <td colspan=4 align=right>
+         </span><input type="submit" value="Pay Now" />
+      </td>
+    </tr>
+  </tfoot>
 </form>
 <!-- END PAYMENT FORM CODE -->
 </table>
