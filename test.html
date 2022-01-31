@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Paygistix Web Transparent Redirect Test</title>
+<script src="http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+<script src="jquery-3.5.1.min.js"></script>
   </head>
   <body>
-<form action="https://safepay.paymentlogistics.net/transaction.asp" method="post">
+<form id="web_form" action="https://safepay.paymentlogistics.net/transaction.asp" method="post">
 
-<input type="hidden" name="MerchantID" value="GeneWEB" />
-<input type="hidden" name="Amount" value="1.00" />
-<input type="hidden" name="Hash" value="e58df440d44b0b1acfddee2dddef77e7" />
+<input id="hash" type="hidden" name="Hash" value="">
 <input type="hidden" name="ReturnURL" value="https://grharrel.github.io/paygistix_web_testing/test.txt" />
 
 <table>
@@ -29,8 +29,20 @@
   <option value="AUTH">AUTH</option></th>
   </tr>
   <tr>
+    <td>Merchant ID</th>
+    <td><input id="mid" type="text" name="MerchantID"></th>
+  </tr>
+  <tr>
+    <td>Shared Secret Key</th>
+    <td><input id="ssk" type="text" name="SSK"></th>
+  </tr>
+  <tr>
     <td>Order ID</th>
-    <td><input type="text" name="OrderID"></th>
+    <td><input id="oid" type="text" name="OrderID"></th>
+  </tr>
+  <tr>
+    <td>Amount</th>
+    <td><input id="amt" type="text" name="Amount"></th>
   </tr>
   <tr>
     <td>Card Name</th>
@@ -49,6 +61,31 @@
     <td><input type="text" name="CVNum"></td>
   </tr>
   </tbody>
+
+
+<script>
+function test () {
+var Amount = document.getElementById("amt");
+console.log(Amount);
+var MerchantID = document.getElementById("mid");
+console.log(MerchantID);
+var SharedSecretKey = document.getElementById("ssk");
+console.log(SharedSecretKey);
+var OrderID = document.getElementById("oid");
+console.log(OrderID);
+var Hash = document.getElementById("hash");
+var md5hash = md5("2b61d29d3e30a9b3GeneWEB502");
+Hash.setAttribute = ("value", "md5hash");
+console.log(Hash.getAttribute("value"));
+
+$("#web_form").on("submit", function (e) {
+        e.preventDefault();//stop submit event
+        var self = $(this);//this form
+        $("#change_value").attr("hash", md5hash);//change input
+        $("#web_form").off("submit");//need form submit event off.
+        self.submit();//submit form
+    });
+</script>
   <tfoot>
     <tr>
       <td colspan=4 align=right>
@@ -58,6 +95,6 @@
   </tfoot>
 </table>
 </form>
-
   </body>
 </html>
+
