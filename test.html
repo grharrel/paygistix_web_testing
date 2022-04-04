@@ -12,35 +12,14 @@
   <body>
   
   <script>
-		// SALE and AUTH
-		function hashGenerate1 (form) {
+		function hashGenerate (form) {
 			form.Hash.value = md5(form.SSK.value + form.MerchantID.value + form.Amount.value + form.OrderID.value);
-			form.SSK.value = '';
-		}
-		// FORCE, VOID, and CREDIT
-		function hashGenerate2 (form) {
-			form.Hash.value = md5(form.SSK.value + form.MerchantID.value + form.Amount.value + form.PNRef.value);
-			form.SSK.value = '';
-		}
-		// ADDCARD
-		function hashGenerate3 (form) {
-			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CaptureFields);
-			form.SSK.value = '';
-		}
-		// UPDATECARD
-		function hashGenerate4 (form) {
-			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CcInfoKey + form.CaptureFields);
-			form.SSK.value = '';
-		}
-		// BILLCARD
-		function hashGenerate5 (form) {
-			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.Amount.value);
 			form.SSK.value = '';
 		}
 </script>
 <script>
-		var form = document.web_form;
 		function chgEnviro() {
+			var form = document.web_form;
 			
 			switch (form.Enviroment.selectedIndex) {
 				case 1:
@@ -52,40 +31,8 @@
 			}
 		}
 </script>
-<script>
-		var form2 = document.web_form;
-		function chgHashGeneration() {
-			
-			switch (form2.TxnType.selectedIndex) {
-				case 1:
-					form2.onsubmit = "hashGenerate1(this)";
-					break;
-				case 2:
-					form2.onsubmit = "hashGenerate1(this)";
-					break;
-				case 3:
-					form2.onsubmit = "hashGenerate2(this)";
-					break;
-				case 4:
-					form2.onsubmit = "hashGenerate2(this)";
-					break;
-				case 5:
-					form2.onsubmit = "hashGenerate2(this)";
-					break;
-				case 6:
-					form2.onsubmit = "hashGenerate3(this)";
-					break;
-				case 7:
-					form2.onsubmit = "hashGenerate4(this)";
-					break;
-				case 8:
-					form2.onsubmit = "hashGenerate5(this)";
-					break;
-			}
-		}
-</script>
 
-<form id="web_form" name="web_form" action="/" method="post" onsubmit="/">
+<form id="web_form" name="web_form" action="/" method="post" onsubmit="hashGenerate(this)">
 
 <input id="hash" type="hidden" name="Hash" value="">
 <input type="hidden" name="ReturnURL" value="https://safepaycert.paymentlogistics.net/testreturn.asp" />
@@ -108,16 +55,10 @@
   </tr>
   <tr>
     <td>Transaction Type</td>
-    <td><select name="TxnType" onChange="chgHashGeneration()">
+    <td><select name="TxnType">
 	<option value="" selected="selected">Select Type</option>
   <option value="SALE">SALE</option>
   <option value="AUTH">AUTH</option>
-  <option value="FORCE">FORCE</option>
-  <option value="VOID">VOID</option>
-  <option value="CREDIT">CREDIT</option>
-  <option value="ADDCARD">ADDCARD</option>
-  <option value="UPDATECARD">UPDATECARD</option>
-  <option value="BILLCARD">BILLCARD</option>
   </select>
   </tr>
   <tr>
@@ -138,39 +79,19 @@
   </tr>
   <tr>
     <td>Card Name</td>
-    <td><input type="text" name="CardName" placeholder="Transparent Redirect"/></td>
+    <td><input type="text" name="CardName" placeholder="(Required for Transparent Redirect)"/></td>
   </tr>
   <tr>
     <td>Card #</td>
-    <td><input type="text" name="CardNumber" placeholder="Transparent Redirect"/></td>
+    <td><input type="text" name="CardNumber" placeholder="(Required for Transparent Redirect)"/></td>
   </tr>
   <tr>
     <td>Exp Date (mmyy)</td>
-    <td><input type="text" name="ExpDate" placeholder="Transparent Redirect"/></td>
+    <td><input type="text" name="ExpDate" placeholder="(Required for Transparent Redirect)"/></td>
   </tr>
   <tr>
     <td>CV #</td>
-    <td><input type="text" name="CVNum" placeholder="Transparent Redirect"/></td>
-  </tr>
-    <tr>
-    <td>PNRef</td>
-    <td><input type="text" name="PNRef" placeholder="Force, Void, and Credit"/></td>
-  </tr>
-      <tr>
-    <td>Customer ID</td>
-    <td><input type="text" name="CustomerID" placeholder="Add and Update Card"/></td>
-  </tr>
-        <tr>
-    <td>Customer Key</td>
-    <td><input type="text" name="CustomerKey" placeholder="Update Card"/></td>
-  </tr>
-          <tr>
-    <td>CC Info Key</td>
-    <td><input type="text" name="CcInfoKey" placeholder="Update and Bill Card"/></td>
-  </tr>
-            <tr>
-    <td>Capture Fields (comma delimter)</td>
-    <td><input type="text" name="CaptureFields" placeholder="Add and Update Card"/></td>
+    <td><input type="text" name="CVNum" placeholder="(Required for Transparent Redirect)"/></td>
   </tr>
     <tr>
     <th>AVS Info.</th>
