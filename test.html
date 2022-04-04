@@ -24,12 +24,12 @@
 		}
 		// ADDCARD
 		function hashGenerate3 (form) {
-			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value);
+			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CaptureFields);
 			form.SSK.value = '';
 		}
 		// UPDATECARD
 		function hashGenerate4 (form) {
-			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CcInfoKey);
+			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CcInfoKey + form.CaptureFields);
 			form.SSK.value = '';
 		}
 		// BILLCARD
@@ -167,6 +167,10 @@
           <tr>
     <td>CC Info Key</td>
     <td><input type="text" name="CcInfoKey" placeholder="Update and Bill Card"/></td>
+  </tr>
+            <tr>
+    <td>Capture Fields (comma delimter)</td>
+    <td><input type="text" name="CaptureFields" placeholder="Add and Update Card"/></td>
   </tr>
     <tr>
     <th>AVS Info.</th>
