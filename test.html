@@ -8,13 +8,17 @@
 	<script src="https://www.myersdaily.org/joseph/javascript/md5.js"></script>
 	<script type="text/javascript" src="https://github.com/kvz/phpjs/raw/master/functions/strings/md5.js"></script>
 	<script type="text/javascript" src="https://github.com/kvz/phpjs/raw/master/functions/xml/utf8_encode.js"></script>
+	<style>
+		input[type="text"], textarea {color: FFFFFF }
+		
+	</style>
   </head>
   <body>
   
   <script>
 		// SALE and AUTH
 		function hashGenerate1 (form) {
-			form.Hash.value = md5(form.SSK.value + form.MerchantID.value + form.Amount.value + form.OrderID.value + form.CaptureFields.value);
+			form.Hash.value = md5(form.SSK.value + form.MerchantID.value + form.Amount.value + form.OrderID.value);
 			form.SSK.value = '';
 		}
 		// FORCE, VOID, and CREDIT
@@ -22,14 +26,14 @@
 			form.Hash.value = md5(form.SSK.value + form.MerchantID.value + form.Amount.value + form.PNRef.value);
 			form.SSK.value = '';
 		}
-		// ADDCARD
+		// ADDCARD and ADDANDSALE
 		function hashGenerate3 (form) {
-			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CaptureFields);
+			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CaptureFields.value);
 			form.SSK.value = '';
 		}
 		// UPDATECARD
 		function hashGenerate4 (form) {
-			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CcInfoKey + form.CaptureFields);
+			form.Hash.value = md5(form.SSK.value + form.TxnType.value + form.MerchantID.value + form.CcInfoKey + form.CaptureFields.value);
 			form.SSK.value = '';
 		}
 		// BILLCARD
@@ -42,11 +46,9 @@
 			switch (form.Enviroment.selectedIndex) {
 				case 1:
 					form.action = "https://safepaycert.paymentlogistics.net/transaction.asp";
-					console.log(form.action);
 					break;
 				case 2:
 					form.action = "https://safepay.paymentlogistics.net/transaction.asp";
-					console.log(form.action);
 					break;
 			}
 		}
@@ -55,41 +57,153 @@
 			switch (form.TxnType.selectedIndex) {
 				case 1:
 					form.setAttribute("onSubmit", "hashGenerate1(this)");
-					console.log(form.onsubmit);
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="lightgreen";
+					document.getElementById("amt").style.background="lightgreen";
+					document.getElementById("cardname").style.background="lightyellow";
+					document.getElementById("cardnum").style.background="lightyellow";
+					document.getElementById("exp").style.background="lightyellow";
+					document.getElementById("cvv").style.background="lightyellow";
+					document.getElementById("pnref").style.background="#FF7F7F";
+					document.getElementById("cid").style.background="#FF7F7F";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="#FF7F7F";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 				case 2:
 					form.setAttribute("onSubmit", "hashGenerate1(this)");
-					console.log(form.onsubmit);
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="lightgreen";
+					document.getElementById("amt").style.background="lightgreen";
+					document.getElementById("cardname").style.background="lightyellow";
+					document.getElementById("cardnum").style.background="lightyellow";
+					document.getElementById("exp").style.background="lightyellow";
+					document.getElementById("cvv").style.background="lightyellow";
+					document.getElementById("pnref").style.background="#FF7F7F";
+					document.getElementById("cid").style.background="#FF7F7F";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="#FF7F7F";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 				case 3:
 					form.setAttribute("onSubmit", "hashGenerate2(this)");
-					console.log(form.onsubmit);
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="#FF7F7F";
+					document.getElementById("amt").style.background="lightgreen";
+					document.getElementById("cardname").style.background="#FF7F7F";
+					document.getElementById("cardnum").style.background="#FF7F7F";
+					document.getElementById("exp").style.background="#FF7F7F";
+					document.getElementById("cvv").style.background="#FF7F7F";
+					document.getElementById("pnref").style.background="lightgreen";
+					document.getElementById("cid").style.background="#FF7F7F";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="#FF7F7F";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 				case 4:
 					form.setAttribute("onSubmit", "hashGenerate2(this)");
-					console.log(form.onsubmit);
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="#FF7F7F";
+					document.getElementById("amt").style.background="lightgreen";
+					document.getElementById("cardname").style.background="#FF7F7F";
+					document.getElementById("cardnum").style.background="#FF7F7F";
+					document.getElementById("exp").style.background="#FF7F7F";
+					document.getElementById("cvv").style.background="#FF7F7F";
+					document.getElementById("pnref").style.background="lightgreen";
+					document.getElementById("cid").style.background="#FF7F7F";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="#FF7F7F";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 				case 5:
 					form.setAttribute("onSubmit", "hashGenerate2(this)");
-					console.log(form.onsubmit);
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="#FF7F7F";
+					document.getElementById("amt").style.background="lightgreen";
+					document.getElementById("cardname").style.background="#FF7F7F";
+					document.getElementById("cardnum").style.background="#FF7F7F";
+					document.getElementById("exp").style.background="#FF7F7F";
+					document.getElementById("cvv").style.background="#FF7F7F";
+					document.getElementById("pnref").style.background="lightgreen";
+					document.getElementById("cid").style.background="#FF7F7F";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="#FF7F7F";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 				case 6:
 					form.setAttribute("onSubmit", "hashGenerate3(this)");
-					console.log(form.onsubmit);
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="#FF7F7F";
+					document.getElementById("amt").style.background="#FF7F7F";
+					document.getElementById("cardname").style.background="#FF7F7F";
+					document.getElementById("cardnum").style.background="#FF7F7F";
+					document.getElementById("exp").style.background="#FF7F7F";
+					document.getElementById("cvv").style.background="#FF7F7F";
+					document.getElementById("pnref").style.background="#FF7F7F";
+					document.getElementById("cid").style.background="lightgreen";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="#FF7F7F";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 				case 7:
-					form.setAttribute("onSubmit", "hashGenerate4(this)");
-					console.log(form.onsubmit);
+					form.setAttribute("onSubmit", "hashGenerate3(this)");
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="#FF7F7F";
+					document.getElementById("amt").style.background="#FF7F7F";
+					document.getElementById("cardname").style.background="#FF7F7F";
+					document.getElementById("cardnum").style.background="#FF7F7F";
+					document.getElementById("exp").style.background="#FF7F7F";
+					document.getElementById("cvv").style.background="#FF7F7F";
+					document.getElementById("pnref").style.background="#FF7F7F";
+					document.getElementById("cid").style.background="lightgreen";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="#FF7F7F";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 				case 8:
-					form.setAttribute("onSubmit", "hashGenerate1(this)");
-					console.log(form.onsubmit);
+					form.setAttribute("onSubmit", "hashGenerate4(this)");
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="#FF7F7F";
+					document.getElementById("amt").style.background="#FF7F7F";
+					document.getElementById("cardname").style.background="#FF7F7F";
+					document.getElementById("cardnum").style.background="#FF7F7F";
+					document.getElementById("exp").style.background="#FF7F7F";
+					document.getElementById("cvv").style.background="#FF7F7F";
+					document.getElementById("pnref").style.background="#FF7F7F";
+					document.getElementById("cid").style.background="lightgreen";
+					document.getElementById("ck").style.background="lightgreen";
+					document.getElementById("ccik").style.background="lightgreen";
+					document.getElementById("cf").style.background="#FF7F7F";
+					break;
+				case 9:
+					form.setAttribute("onSubmit", "hashGenerate5(this)");
+					document.getElementById("mid").style.background="lightgreen";
+					document.getElementById("ssk").style.background="lightgreen";
+					document.getElementById("oid").style.background="#FF7F7F";
+					document.getElementById("amt").style.background="lightgreen";
+					document.getElementById("cardname").style.background="#FF7F7F";
+					document.getElementById("cardnum").style.background="#FF7F7F";
+					document.getElementById("exp").style.background="#FF7F7F";
+					document.getElementById("cvv").style.background="#FF7F7F";
+					document.getElementById("pnref").style.background="#FF7F7F";
+					document.getElementById("cid").style.background="#FF7F7F";
+					document.getElementById("ck").style.background="#FF7F7F";
+					document.getElementById("ccik").style.background="lightgreen";
+					document.getElementById("cf").style.background="#FF7F7F";
 					break;
 			}
 		}
 </script>
 
-<form id="web_form" name="web_form" action="/" method="post" onsubmit="/">
+<form id="web_form" name="web_form" action="/" method="post" onsubmit="">
 
 <input id="hash" type="hidden" name="Hash" value="">
 <input type="hidden" name="ReturnURL" value="https://safepaycert.paymentlogistics.net/testreturn.asp" />
@@ -116,40 +230,67 @@
 	<option value="" selected="selected">Select Type</option>
   <option value="SALE">SALE</option>
   <option value="AUTH">AUTH</option>
+  <option value="FORCE">FORCE</option>
+  <option value="VOID">VOID</option>
+  <option value="CREDIT">CREDIT</option>
+  <option value="ADDCARD">ADDCARD</option>
+  <option value="ADDANDSALE">ADDANDSALE</option>
+  <option value="UPDATECARD">UPDATECARD</option>
+  <option value="BILLCARD">BILLCARD</option>
   </select>
   </td>
   </tr>
   <tr>
     <td>Merchant ID</td>
-    <td><input type="text" name="MerchantID"/></td>
+    <td><input id="mid" type="text" name="MerchantID"/></td>
   </tr>
     <tr>
     <td>Shared Secret Key</td>
-    <td><input type="text" name="SSK"/></td>
+    <td><input id="ssk" type="text" name="SSK"/></td>
   </tr>
   <tr>
     <td>Order ID</td>
-    <td><input type="text" name="OrderID"/></td>
+    <td><input id="oid" type="text" name="OrderID"/></td>
   </tr>
     <tr>
     <td>Amount</td>
-    <td><input type="text" name="Amount"/></td>
+    <td><input id="amt" type="text" name="Amount"/></td>
   </tr>
   <tr>
     <td>Card Name</td>
-    <td><input type="text" name="CardName" placeholder="(Required for Transparent Redirect)"/></td>
+    <td><input id="cardname" type="text" name="CardName" placeholder="Transparent Redirect"/></td>
   </tr>
   <tr>
     <td>Card #</td>
-    <td><input type="text" name="CardNumber" placeholder="(Required for Transparent Redirect)"/></td>
+    <td><input id="cardnum" type="text" name="CardNumber" placeholder="Transparent Redirect"/></td>
   </tr>
   <tr>
     <td>Exp Date (mmyy)</td>
-    <td><input type="text" name="ExpDate" placeholder="(Required for Transparent Redirect)"/></td>
+    <td><input id="exp" type="text" name="ExpDate" placeholder="Transparent Redirect"/></td>
   </tr>
   <tr>
     <td>CV #</td>
-    <td><input type="text" name="CVNum" placeholder="(Required for Transparent Redirect)"/></td>
+    <td><input id="cvv" type="text" name="CVNum" placeholder="Transparent Redirect"/></td>
+  </tr>
+    <tr>
+    <td>PNRef</td>
+    <td><input id="pnref" type="text" name="PNRef" placeholder="Force, Void, and Credit"/></td>
+  </tr>
+      <tr>
+    <td>Customer ID</td>
+    <td><input id="cid" type="text" name="CustomerID" placeholder="Add and Update Card"/></td>
+  </tr>
+        <tr>
+    <td>Customer Key</td>
+    <td><input id="ck" type="text" name="CustomerKey" placeholder="Update Card"/></td>
+  </tr>
+          <tr>
+    <td>CC Info Key</td>
+    <td><input id="ccik" type="text" name="CcInfoKey" placeholder="Update and Bill Card"/></td>
+  </tr>
+            <tr>
+    <td>Capture Fields (comma delimter)</td>
+    <td><input id="cf" type="text" name="CaptureFields" placeholder="Add and Update Card"/></td>
   </tr>
     <tr>
     <th>AVS Info.</th>
